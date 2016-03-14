@@ -1,5 +1,5 @@
 /*
-Write a program to convert decimal numbers to their binary representation.
+Write a program to convert binary numbers to their decimal representation.
 */
 using System;
 
