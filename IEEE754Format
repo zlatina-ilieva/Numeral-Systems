@@ -1,0 +1,48 @@
+/*
+Write a program that shows the internal binary representation of given 32-bit signed floating-point number in IEEE 754 format 
+(the C# type float). Example: -27,25  sign = 1, exponent = 10000011, mantissa = 10110100000000000000000.
+*/
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
+using System.Threading;
+
+class IEEE754Format
+{
+    static void Main()
+    {
+        Console.Write("Enter float number: ");
+        float number = float.Parse(Console.ReadLine());
+        long convertBits = BitConverter.DoubleToInt64Bits(number);
+        long mask = 1;
+        long sign = 0;
+        string binary = "";
+        string exponenta;
+        string mantisa;
+        sign = ((convertBits >> 63) & mask);
+        convertBits = (convertBits & (~(mask << 63)));
+        do
+        {
+            binary = (convertBits % 2) + binary;
+            convertBits /= 2;
+        }
+        while (convertBits != 0);
+        if (number > -2.0f && number < 2.0f)
+        {
+            exponenta = "0";
+            exponenta += binary.Substring(3, 7);
+            mantisa = binary.Substring(10, 23);
+        }
+        else
+        {
+            exponenta = binary.Substring(0, 1);
+            exponenta += binary.Substring(4, 7);
+            mantisa = binary.Substring(11, 23);
+        }
+        Console.WriteLine("The IEEE754 firmat 9 of the float number {0} is: ",number);
+        Console.Write(sign + " ");
+        Console.Write(exponenta + " ");
+        Console.WriteLine(mantisa);
+    }
+}
