@@ -1,0 +1,31 @@
+/*
+Write a program to convert hexadecimal numbers to their decimal representation.
+*/
+using System;
+using System.Text;
+
+class HexDec
+{
+    static void Main(string[] args)
+    {
+        Console.Write("Enter hex number: ");
+        string hex = Console.ReadLine();
+        hex = hex.ToUpper();
+        int decNum = 0;
+        int len = hex.Length;
+        for (int i = len - 1; i >= 0; i--)
+        {
+            switch (hex[i])
+            {
+                case 'A': decNum += 10 * (int)Math.Pow(16, len - 1 - i); break;
+                case 'B': decNum += 11 * (int)Math.Pow(16, len - 1 - i); break;
+                case 'C': decNum += 12 * (int)Math.Pow(16, len - 1 - i); break;
+                case 'D': decNum += 13 * (int)Math.Pow(16, len - 1 - i); break;
+                case 'E': decNum += 14 * (int)Math.Pow(16, len - 1 - i); break;
+                case 'F': decNum += 15 * (int)Math.Pow(16, len - 1 - i); break;
+                default: decNum += (hex[i] - '0') * (int)Math.Pow(16, len - 1 - i); break;
+            }
+        }
+        Console.WriteLine(decNum);
+    }
+}
