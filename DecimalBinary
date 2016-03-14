@@ -1,0 +1,27 @@
+/*
+Write a program to convert decimal numbers to their binary representation.
+*/
+using System;
+using System.Collections.Generic;
+
+class DecimalBinary
+{
+    static void Main()
+    {
+        Console.Write("Enter decimal number to convert: ");
+        int n = int.Parse(Console.ReadLine());
+        List<int> binary = new List<int>();
+        do
+        {
+            binary.Add(n % 2);
+            n = n / 2;
+        }
+        while (n > 0);
+        binary.Reverse();
+        for (int i = 0; i < binary.Count; i++)
+        {
+            Console.Write("{0}", binary[i]);
+        }
+        Console.WriteLine();
+    }
+}
